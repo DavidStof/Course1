@@ -10,11 +10,11 @@
 =end
 
 puts "Введите коэффициент 'a'"
-a = Float(gets.chomp)
+a = gets.chomp.to_f
 puts "Введите коэффициент 'b'"
-b = Float(gets.chomp)
+b = gets.chomp.to_f
 puts "Введите коэффициент 'c'"
-c = Float(gets.chomp)
+c = gets.chomp.to_f
 
 discriminant = b**2 - 4*a*c
 puts "Дискриминант = #{discriminant}"

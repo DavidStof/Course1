@@ -12,13 +12,13 @@
 
 sides = []
 puts "Введите длину первой стороны треугольника"
-sides.push Float(gets.chomp)
+sides.push gets.chomp.to_f
 
 puts "Введите длину второй стороны треугольника"
-sides.push Float(gets.chomp)
+sides.push gets.chomp.to_f
 
 puts "Введите длину третьей стороны треугольника"
-sides.push Float(gets.chomp)
+sides.push gets.chomp.to_f
 
 longest = sides.sort![2]
 

@@ -11,7 +11,7 @@ puts 'Как к Вам можно обращаться? '
 nickname = gets.chomp.capitalize
 
 puts 'Какого Вы роста? (в сантиметрах) '
-height = Integer(gets.chomp)
+height = gets.chomp.to_i
 
 perfect_weight = (height - 110) * 1.15
 

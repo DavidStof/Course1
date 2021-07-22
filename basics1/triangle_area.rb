@@ -5,9 +5,9 @@
 =end
 
 puts "Введите длину основания треугольника"
-base = Float(gets.chomp)
+base = gets.chomp.to_f
 
 puts "Введите высоту треугольника"
-height = Float(gets.chomp)
+height = gets.chomp.to_f
 
 puts "Площадь треугольника: #{base * height * 0.5}"
