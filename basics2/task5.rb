@@ -18,32 +18,10 @@ month = gets.chomp.to_i
 puts "Введите день месяца: "
 day = gets.chomp.to_i
 
-is_leap_year = nil
+february_length = (year%4).zero? && ( (year%100).nonzero? || (year%400).zero? ) ? 29 : 28
 
-if year % 4 == 0
-  if year % 100 == 0
-    if year % 400 == 0
-      is_leap_year = true
-    else
-      is_leap_year = false
-    end
-  else
-    is_leap_year = true  
-  end
-else
-  is_leap_year = false
-end
+months_days = [31, february_length, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-#february_length = is_leap_year ? 29 : 28
+number = months_days.take(month-1).sum + day
 
-months_days = [0, 31, is_leap_year ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-sum = 0
-
-for m_idx in (1..month) do 
-  sum += months_days[m_idx-1]
-end
-
-sum += day
-
-puts "Введённый день является #{sum} по порядку в#{is_leap_year ? ' високосном ' : ' '}#{year} году"
+puts "Введённый день является #{number} по порядку в #{year} году"

@@ -2,17 +2,14 @@
 Заполнить хеш гласными буквами, где значением будет являтся порядковый номер буквы в алфавите (a - 1).
 =end
 
-alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-vowels = 'аеёиоуыэюя'
+alphabet = ("а".."я")
+vowels = %w(а е ё и о у ы э ю я)
 
-result = Hash.new
+result = {}
 
-idx = 0
-alphabet.each_char do |char|
+alphabet.each_with_index do |char, idx|
   idx += 1
-  vowels.each_char do |vowel|
-    result[vowel] = idx if char == vowel
-  end
+  result[char] = idx if vowels.include? char
 end
 
 puts result
