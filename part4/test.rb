@@ -35,7 +35,7 @@ puts "Скорость #{train1.speed}"
 puts "---\n"
 
 puts "Прибываем на станцию #{train1.next_station.title}"
-train1.move
+train1.forward
 puts "Тормозим"
 train1.stop
 puts "Скорость #{train1.speed}"
@@ -52,10 +52,16 @@ puts "Теперь в поезде #{train2.number} #{train2.carriage_count} в�
 puts "---\n"
 
 puts "На станции #{station2.title} сейчас находятся #{station2.trains.count} поезд(а): "
-station2.trains.each {|n, t|  puts t.number}
+
+puts Train::TYPE_NAMES[Train::TYPE_PASSENGER]
+station2.trains_by_type(Train::TYPE_PASSENGER).each { |number, train| puts number }
+puts Train::TYPE_NAMES[Train::TYPE_FREIGHT]
+station2.trains_by_type(Train::TYPE_FREIGHT).each { |number, train| puts number }
 puts "---\n"
+
 puts "Поезд #{train2.number} уехал"
-train2.move
+#train2.move
+train2.forward2
 puts "---\n"
 
 puts "На станции #{station2.title} сейчас находятся #{station2.trains.count} поезд(а): "
@@ -69,3 +75,7 @@ puts "---\n"
 puts "#{Train::TYPE_NAMES[train2.type].capitalize} поезд #{train2.number} из #{train2.carriage_count} вагонов на станции #{train2.current_station.title} следует по маршруту #{train2.route.to_s}"
 puts "Предыдущая станция #{train2.previous_station.title}"
 puts "---\n"
+
+puts "тест ошибки (дальше ехать некуда)"
+#train2.move2
+train2.forward2

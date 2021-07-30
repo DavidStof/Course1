@@ -52,7 +52,7 @@ class Train
   end
 
   def route=(route)
-    if station then station.send_train self end
+    station.send_train self if station
     @route = route
     @station = self.route.stations.first
     station.take_train self
@@ -70,19 +70,50 @@ class Train
     station
   end
 
-  def move(forward=true)
-    unless station then puts 'Error: Train should be on route'; return false end
-    can_move_to = false
-    if forward && (destination = next_station)
-      can_move_to = destination
-    elsif !forward && (destination = previous_station)
-      can_move_to = destination
+  # На следующую в маршруте станцию
+  def forward
+    if destination = next_station
+      station.send_train self
+      @station = destination
+      station.take_train self
+    elsif
+      puts 'Error: There is no way further'
+      return false
     end
-
-    unless can_move_to then puts 'Error: There is no way further'; return false end
-    station.send_train self
-    @station = can_move_to
-    station.take_train self
   end
 
+  # На предыдущую в маршруте станцию
+  def backward
+    if destination = previous_station
+      station.send_train self
+      @station = destination
+      station.take_train self
+    elsif
+      puts 'Error: There is no way further'
+      return false
+    end
+  end
+
+  # Может лучше сделать так?
+
+  def forward2
+    move2 true
+  end
+
+  def backward2
+    move2 false
+  end
+
+  private
+
+  def move2(forward=true)
+    if destination = forward ? next_station : previous_station
+      station.send_train self
+      @station = destination
+      station.take_train self
+    elsif
+    puts 'Error: There is no way further'
+      return false
+    end
+  end
 end

@@ -28,11 +28,9 @@ class Station
     @trains.delete train.number
   end
 
-  # Поезда по типу
-  def trains_by_type
-    result = {Train::TYPE_PASSENGER => 0, Train::TYPE_FREIGHT => 0,}
-    trains.each { |train| result[train.type] += 1 }
-    result
+  # Поезда по типу (Train::TYPE_PASSENGER, Train::TYPE_FREIGHT)
+  def trains_by_type(type)
+    trains.select {|number, train| train.type == type}
   end
 
 end
